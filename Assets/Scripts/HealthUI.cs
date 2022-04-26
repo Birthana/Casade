@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    public Health health;
     public Transform healthBar;
     public GameObject healthBarPrefab;
     public float SPACING;
@@ -12,7 +11,7 @@ public class HealthUI : MonoBehaviour
 
     private void Start()
     {
-        health.OnHealthChange += DisplayHealth;
+        GetComponent<Health>().OnHealthChange += DisplayHealth;
     }
 
     private void DisplayHealth(int currentHealth)
