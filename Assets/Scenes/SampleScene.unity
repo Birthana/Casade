@@ -818,6 +818,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5620756387994889470, guid: ca048019759d1254f8ff62b144a34700, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca048019759d1254f8ff62b144a34700, type: 3}
 --- !u!1 &1366531445
@@ -1124,7 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 8176814983994772707, guid: 5e0045907f8dccf42b610158b33f8711, type: 3}
   attackCooldown: 2
-  attackRange: 5
+  attackRange: 10
   attackSpeed: 2
   attackDuration: 1.5
   playerLayer:

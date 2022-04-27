@@ -147,3 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  effectedLayers:
+    serializedVersion: 2
+    m_Bits: 64

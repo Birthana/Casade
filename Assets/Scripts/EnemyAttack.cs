@@ -31,10 +31,8 @@ public class EnemyAttack : MonoBehaviour
         {
             GameObject newFireBall = Instantiate(fireballPrefab, transform);
             Vector3 target = hit.collider.transform.position;
-            target = (target - transform.position).normalized;
-            Vector3 direction = (target.x > 0) ? Vector3.right : Vector3.left;
-            if (target.x < 0)
-                newFireBall.transform.rotation = Quaternion.Euler(0, 180, 0);
+            Vector3 direction = (target - transform.position).normalized;
+            newFireBall.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             newFireBall.transform.position += direction;
             newFireBall.GetComponent<Rigidbody2D>().AddForce(direction * attackSpeed * 50);
             Destroy(newFireBall, attackDuration);
