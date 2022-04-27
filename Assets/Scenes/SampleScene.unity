@@ -133,7 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 162124492}
   - component: {fileID: 162124493}
-  m_Layer: 0
+  - component: {fileID: 162124494}
+  m_Layer: 8
   m_Name: TileHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +181,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &162124494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162124491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4d91cf2cbb1d64cae65a38313d7cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189327503
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +468,8 @@ GameObject:
   m_Component:
   - component: {fileID: 668980900}
   - component: {fileID: 668980901}
-  m_Layer: 0
+  - component: {fileID: 668980902}
+  m_Layer: 8
   m_Name: TileHitBox (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,6 +516,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &668980902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668980899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4d91cf2cbb1d64cae65a38313d7cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &684307254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5707242030108236826, guid: 7e2eec98316452845a701dfd09df7405, type: 3}
@@ -635,7 +661,8 @@ Transform:
   m_LocalPosition: {x: 0.073, y: 0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1881875890}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -698,10 +725,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9bc8b06ef9f7c41a26be892ec4b119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
   jumpVelocity: 10
-  fallMultiplier: 3
-  lowMultiplier: 2
+  fallMultiplier: 2
+  lowMultiplier: 1.5
+  attackCenter: {fileID: 1881875890}
+  attackCooldown: 0.3
+  damageCalTime: 0.1
+  attackSize: {x: 1, y: 1.5}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!95 &1161079779
 Animator:
   serializedVersion: 4
@@ -813,6 +847,10 @@ PrefabInstance:
     - target: {fileID: 5620756387994889467, guid: ca048019759d1254f8ff62b144a34700, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620756387994889467, guid: ca048019759d1254f8ff62b144a34700, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5620756387994889467, guid: ca048019759d1254f8ff62b144a34700, type: 3}
       propertyPath: m_IsActive
@@ -948,7 +986,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1455386738}
   - component: {fileID: 1455386739}
-  m_Layer: 0
+  - component: {fileID: 1455386740}
+  m_Layer: 8
   m_Name: TileHitBox (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,6 +1034,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1455386740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455386737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4d91cf2cbb1d64cae65a38313d7cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472266508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +1056,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1472266509}
   - component: {fileID: 1472266510}
-  m_Layer: 0
+  - component: {fileID: 1472266511}
+  m_Layer: 8
   m_Name: TileHitBox (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,6 +1104,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1472266511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472266508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4d91cf2cbb1d64cae65a38313d7cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808223708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1126,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1808223709}
   - component: {fileID: 1808223710}
-  m_Layer: 0
+  - component: {fileID: 1808223711}
+  m_Layer: 8
   m_Name: TileHitBox (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,6 +1174,49 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &1808223711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808223708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4d91cf2cbb1d64cae65a38313d7cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1881875889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1881875890}
+  m_Layer: 6
+  m_Name: Attackcenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1881875890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881875889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1161079775}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981081806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5620756387994889467, guid: ca048019759d1254f8ff62b144a34700, type: 3}
