@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 9003771602875508533}
   - component: {fileID: 9003771602875508530}
   - component: {fileID: 9003771602875508531}
-  m_Layer: 0
+  - component: {fileID: 5823056840549986816}
+  m_Layer: 8
   m_Name: TemporaryTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +95,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 9003771602875508528}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 42fe5be8c4297fe449bde34861e51fbe, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -111,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2533342, y: 0.4300873}
   m_EdgeRadius: 0
+--- !u!114 &5823056840549986816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003771602875508528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4300a6d866ddc884d80ce95fd9f82af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private bool isJumping;
     private bool isMoving;
-    private bool isGrounded = true;
 
     [Header("Attack")]
     public Transform attackCenter;
@@ -23,6 +22,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 attackSize;
     public LayerMask enemyLayer;
     private bool isAttacking;
+
+    [Header("Ground")]
+    public Transform groundCheck;
+    public float groundCheckLineSize;
+    public LayerMask groundLayer;
+    [SerializeField]
+    private bool isGrounded = true;
 
     private string currentState;
 
@@ -38,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         CheckAttacking();
         CheckHorizontalMovement();
         CheckJumping();
+        CheckJumpReset();
     }
 
     private void FixedUpdate()
@@ -110,9 +117,16 @@ public class PlayerMovement : MonoBehaviour
         ChangeAnimation("Player_Idle");
     }
 
-    public void JumpReset()
+    private void CheckJumpReset() 
     {
-        isGrounded = true;
+        if (isGrounded)
+            return;
+        RaycastHit2D hit = Physics2D.BoxCast(groundCheck.position, new Vector3(0.5f, groundCheckLineSize, 0), 0, Vector3.zero, 0, groundLayer);
+        if (hit)
+        {
+            Debug.Log($"Landed. {hit.collider.gameObject}");
+            isGrounded = true;
+        }
     }
 
     private void Fall()
@@ -163,5 +177,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (attackCenter != null)
             Gizmos.DrawWireCube(attackCenter.position, attackSize);
+        if (groundCheck != null)
+            Gizmos.DrawWireCube(groundCheck.position, new Vector3(0.8f, groundCheckLineSize, 0));
     }
 }
