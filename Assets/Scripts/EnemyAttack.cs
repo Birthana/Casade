@@ -42,7 +42,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (attackRange == 0)
             return;

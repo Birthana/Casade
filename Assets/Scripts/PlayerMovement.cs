@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     [SerializeField]
     private bool isGrounded = true;
+    [SerializeField]
+    private Platform lastPlatform;
 
     private string currentState;
 
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isMoving)
         {
+            CheckCurrentPlatform();
             float h = Input.GetAxis("Horizontal");
             Vector2 movementVector = new Vector2(h, 0).normalized * speed;
             movementVector.y = rb.velocity.y;
@@ -70,6 +73,24 @@ public class PlayerMovement : MonoBehaviour
             ChangeAnimationState(h);
             ChangeRotation(h);
             isMoving = false;
+        }
+    }
+
+    private void CheckCurrentPlatform()
+    {
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(groundCheck.position, new Vector3(0.5f, groundCheckLineSize, 0), 0, Vector3.zero, 0, groundLayer);
+        if (hits.Length == 0 && lastPlatform != null)
+        {
+            lastPlatform.TryDestroy();
+            lastPlatform = null;
+        }
+        if (hits.Length == 0)
+            return;
+        if (hits[0])
+        {
+            Platform newPlatform = hits[0].collider.gameObject.GetComponent<Platform>();
+            if (newPlatform != null)
+                lastPlatform = newPlatform;
         }
     }
 
@@ -103,12 +124,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isJumping)
         {
+            CheckIfTemporaryGround();
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             isGrounded = false;
             isJumping = false;
             if(isAttacking)
                 Invoke("JumpComplete", 0.5f);
+        }
+    }
+
+    private void CheckIfTemporaryGround()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(groundCheck.position, new Vector3(0.5f, groundCheckLineSize, 0), 0, Vector3.zero, 0, groundLayer);
+        if (hit)
+        {
+            Platform newPlatform = hit.collider.GetComponent<Platform>();
+            if (newPlatform != null)
+                newPlatform.TryDestroy();
         }
     }
 
@@ -124,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(groundCheck.position, new Vector3(0.5f, groundCheckLineSize, 0), 0, Vector3.zero, 0, groundLayer);
         if (hit)
         {
-            Debug.Log($"Landed. {hit.collider.gameObject}");
             isGrounded = true;
         }
     }

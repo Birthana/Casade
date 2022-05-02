@@ -6,13 +6,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event Action<int> OnHealthChange;
+    public event Action OnDeath;
     public int maxHealth;
     private int currentHealth;
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        OnHealthChange?.Invoke(currentHealth);
+        Reset();
     }
 
     public void HealDamage(int damage)
@@ -28,6 +28,14 @@ public class Health : MonoBehaviour
     private void ChangeHealth(int change)
     {
         currentHealth = Mathf.Max(0, currentHealth + change);
+        OnHealthChange?.Invoke(currentHealth);
+        if (currentHealth <= 0)
+            OnDeath?.Invoke();
+    }
+
+    public void Reset()
+    {
+        currentHealth = maxHealth;
         OnHealthChange?.Invoke(currentHealth);
     }
 }
