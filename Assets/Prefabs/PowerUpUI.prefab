@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 8012060086590995137}
   - component: {fileID: 8012060086590995166}
   - component: {fileID: 8012060086590995167}
-  - component: {fileID: 3608363211107442639}
+  - component: {fileID: 4224537969746697500}
   m_Layer: 5
   m_Name: PowerUpUI
   m_TagString: Untagged
@@ -285,7 +285,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.066633, y: 7.592472}
   m_EdgeRadius: 0
---- !u!114 &3608363211107442639
+--- !u!114 &4224537969746697500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,8 +294,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8012060086590995164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0a9a50eeacbd34d8cd1a6da0890b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 31ef5f23f34690e4191d2c25455a77ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUp: {fileID: 0}
   text: {fileID: 8012060086045870253}
-  description: Gain 1 Max Health. Restore 2 Health.
+  description: 

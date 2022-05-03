@@ -43,12 +43,26 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    public Vector3 WorldToTile(Vector3 worldPosition)
+    {
+        Vector3 tilePosition = worldPosition - leftPoint.position;
+        tilePosition.x /= tileSpacing;
+        tilePosition.y /= lineSpacing;
+        return tilePosition;
+    }
+
     public void SpawnTile(int x, int y)
     {
         GameObject tile = Instantiate(tilePrefab, transform);
         tile.transform.position = leftPoint.position + new Vector3(x * tileSpacing, -y * lineSpacing);
         if (y % 2 != 0)
             tile.transform.position += new Vector3(tileSpacing / 2, 0);
+    }
+
+    public void SpawnRandomTile()
+    {
+        //Check if filled.
+        SpawnTile(Random.Range(0, tiles), Random.Range(0, lines));
     }
 
     private void OnDrawGizmosSelected()

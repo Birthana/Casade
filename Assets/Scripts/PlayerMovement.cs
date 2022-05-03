@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Attack")]
     public Transform attackCenter;
+    public int attackDamage;
     public float attackCooldown;
     public float damageCalTime;
     public Vector2 attackSize;
@@ -27,18 +28,30 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckLineSize;
     public LayerMask groundLayer;
-    [SerializeField]
     private bool isGrounded = true;
-    [SerializeField]
     private Platform lastPlatform;
 
     private string currentState;
+    private Camera main;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        main = Camera.main;
         ChangeAnimation("Player_Idle");
+        SetUpDeathTrigger();
+    }
+
+    private void SetUpDeathTrigger()
+    {
+        Health health = GetComponent<Health>();
+        health.OnDeath += Die;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -47,6 +60,15 @@ public class PlayerMovement : MonoBehaviour
         CheckHorizontalMovement();
         CheckJumping();
         CheckJumpReset();
+        CheckIfOutOfCamera();
+    }
+
+    private void CheckIfOutOfCamera()
+    {
+        if (main.transform.position.y > transform.position.y + 10.0f)
+        {
+            Die();
+        }
     }
 
     private void FixedUpdate()
@@ -187,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(attackCenter.position, attackSize, 0, Vector2.zero, 0, enemyLayer);
         if (hit)
         {
-            hit.collider.gameObject.GetComponent<Health>().TakeDamage(1);
+            hit.collider.gameObject.GetComponent<Health>().TakeDamage(attackDamage);
         }
     }
 
